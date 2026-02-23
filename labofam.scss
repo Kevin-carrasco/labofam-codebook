@@ -1,12 +1,32 @@
 /*-- scss:defaults --*/
 
-$primary: #8b0000 !default;
+/* ====== PALETA ESTILO LABOFAM (mantiene nombres $blue-* para no romper el SCSS) ====== */
+/* Basada en el naranja principal del isotipo (cuadros) */
+$blue-50:  #fff0eb;
+$blue-100: #ffe1d6;
+$blue-200: #ffc8b3;
+$blue-300: #ffa685;
+$blue-400: #ff7e4d;
+$blue-500: #ff4601;   /* naranja Labofam (principal) */
+$blue-600: #e03e01;
+$blue-700: #bd3401;
+$blue-800: #942901;
+$blue-900: #661c00;
+$blue-950: #471400;
+
+/* Colores “cuadros” (para acentos puntuales si los quieres usar) */
+$labofam-orange: #ff4601;
+$labofam-salmon: #ed774f;
+$labofam-red:    #db4949;
+$labofam-purple: #682850;
+
+$primary: #682850 !default;
 $font-size-root: 18px !default;
 
 /*-- scss:rules --*/
 
 .sidebar-title {
-  color: #8b0000;
+  color: #ff4601;
 }
 
 div.sidebar-item-container .active {

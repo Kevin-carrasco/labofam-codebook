@@ -5,7 +5,7 @@ project:
 book:
   title: "Manual Metodológico Labofam"
   author: "Equipo LABOFAM"
-  date: 01/03/2026
+  date: 03/01/2026
   reader-mode: true
   page-footer:
     left: |
@@ -37,7 +37,7 @@ format:
   html:
     theme:
       - cosmo
-      - edumer.scss
+      - labofam.scss
     code-link: true
 
 editor: visual

@@ -3,27 +3,27 @@ project:
   output-dir: docs
 
 book:
-  title: "Manual Metodológico CAIS"
-  author: "Equipo LISA"
-  date: 29/11/2024
+  title: "Manual Metodológico Labofam"
+  author: "Equipo LABOFAM"
+  date: 01/03/2026
   reader-mode: true
   page-footer:
     left: |
-      Proyecto Mini-COES "Prácticas, Creencias y Conocimiento en Ciencia Abierta: Propuestas para las ciencias sociales".
+      Núcleo Milenio en Política Laboral y Vida Familiar y Colectiva (LABOFAM).
 
     right: |
       Este libro se construyó con <a href="https://quarto.org/">Quarto</a>.
   page-navigation: true
-  cover-image: edumer.png
-  favicon: edumer.png
-  repo-url: https://github.com/lisa-coes/cais-book
+  cover-image: labofam.svg
+  favicon: labofam.svg
+  repo-url: https://github.com/kevin-carrasco/labofam-codebook
   repo-branch: main
   chapters:
     - index.qmd
     - 01-antecedents.qmd
     - 02-database.qmd
     - 03-codebook.qmd
-    - 04-results.qmd
+#    - 04-results.qmd
   search:
     location: sidebar
     type: textbox

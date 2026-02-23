@@ -1,5 +1,5 @@
-# Ciencia Abierta en Investigación Social
+# Encuesta del [Núcleo Milenio en Política Laboral y Vida Familiar y Colectiva (LABOFAM)](https://labofam.cl/)
 
-This repository contains the production code, processing scripts, and methodological documentation for the Educational Justice and Citizenship Panel Survey database, part of the Fondecyt Project No. 1210847 EDUMER.
+Este repositorio contiene el manual metodológico y libro de códigos de la Encuesta del [Núcleo Milenio en Política Laboral y Vida Familiar y Colectiva (LABOFAM)](https://labofam.cl/)
 
-[Methodological manual](https://lisa-coes.github.io/cais-book/)
+El documento completo está disponible en el siguiente enlace: [https://kevin-carrasco.github.io/labofam-codebook/](https://kevin-carrasco.github.io/labofam-codebook/)

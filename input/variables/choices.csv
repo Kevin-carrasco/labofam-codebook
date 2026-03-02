@@ -1,0 +1,358 @@
+list_name,name,label
+Ingresos,1,Menos de $200.000 mensuales líquidos
+Ingresos,2,De $200.001 a $400.000 mensuales liquidos
+Ingresos,3,De $400.001 a $600.000 mensuales líquidos
+Ingresos,4,De $600.001 a $800.000 mensuales líquidos
+Ingresos,5,De $800.001 a $1.000.000 mensuales líquidos
+Ingresos,6,De $1.000.001 a $1.200.000 mensuales líquidos
+Ingresos,7,De $1.200.001 a $1.400.000 mensuales líquidos
+Ingresos,8,De $1.400.001 a $1.600.000 mensuales líquidos
+Ingresos,9,De $1.600.001 a $1.800.000 mensuales netos
+Ingresos,10,De $1.800.001 a $2.000.000 mensuales netos
+Ingresos,11,De $2.000.001 a $2.200.000 mensuales netos
+Ingresos,12,De $2.200.001 a $2.400.000 mensuales netos
+Ingresos,13,De $2.400.001 a $2.600.000 mensuales netos
+Ingresos,14,De $2.600.001 a $2.800.000 mensuales netos
+Ingresos,15,De $2.800.001 a $3.000.000 mensuales netos
+Ingresos,16,Mas de $3.000.001 a mensuales netos
+Ingresos,-888,No sabe (no leer)
+Ingresos,-999,No responde (no leer)
+si_no,1,Sí
+si_no,2,No
+si_no,-888,No sabe (no leer)
+si_no,-999,No responde (no leer)
+influencia,1,Mucha influencia (generalmente Ud. toma la decisión)
+influencia,2,"Algo de influencia (puede recomendar hacerlo, pero no depende de Ud.)"
+influencia,3,Nada de influencia
+influencia,-888,No sabe (no leer)
+influencia,-999,No responde (no leer)
+frecuencia,1,"Sí, en el último año"
+frecuencia,2,"Sí, en el pasado distante"
+frecuencia,3,"No, pero podría hacerlo"
+frecuencia,4,No y nunca lo haría
+frecuencia,-888,No sabe (no leer)
+frecuencia,-999,No responde (no leer)
+rubro_actividad,1,"A. Agricultura, ganadería, silvicultura y pesca"
+rubro_actividad,2,B. Explotación de minas y canteras
+rubro_actividad,3,"C. Industrias manufactureras (elaboración y fabricación de productos de cualquier tipo, por ej., alimentos, textiles, madera, químicos, etc.)"
+rubro_actividad,4,"D. Suministro de electricidad, gas, vapor y aire acondicionado"
+rubro_actividad,5,"E. Suministro de agua, evacuación de aguas residuales, gestión de desechos y descontaminación"
+rubro_actividad,6,F. Construcción
+rubro_actividad,7,G. Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas
+rubro_actividad,8,H. Transporte y almacenamiento
+rubro_actividad,9,I. Actividades de alojamiento y servicio de comidas
+rubro_actividad,10,"J. Información y comunicaciones (ej., edición de libros, producción de películas, telecomunicaciones e informática)"
+rubro_actividad,11,"K. Actividades financieras y de seguros (ej., bancos y seguros de vida)"
+rubro_actividad,12,L. Actividades inmobiliarias
+rubro_actividad,13,"M. Actividades profesionales, científicas y técnicas (ej., oficinas de abogados, publicidad, investigación científica)"
+rubro_actividad,14,"N. Servicios administrativos y de apoyo (ej., arriendo de vehículos y maquinaria, servicios de seguridad privada, call centers, etc.)"
+rubro_actividad,15,"O. Administración pública y defensa (ej., trabajo en el Estado y municipalidades, orden público o en seguridad social de afiliación obligatoria)"
+rubro_actividad,16,P. Enseñanza
+rubro_actividad,17,Q. Atención de la salud humana y de asistencia social
+rubro_actividad,18,"R. Actividades artísticas, de entretenimiento y recreativas (ej., trabajo en librerías, centros deportivos o parques de diversión)"
+rubro_actividad,19,"S. Otras actividades de servicios (ej., lavado de ropa, peluquería o trabajo en organizaciones sociales)"
+rubro_actividad,20,T. Actividades no diferenciadas de los hogares como productores de bienes y servicios para uso propio
+rubro_actividad,21,U. Organizaciones y órganos extraterriroriales
+rubro_actividad,22,Otra
+rubro_actividad,-888,No sabe (no leer)
+rubro_actividad,-999,No responde (no leer)
+likert_5,1,Muy en desacuerdo
+likert_5,2,En desacuerdo
+likert_5,3,Ni de acuerdo ni en desacuerdo
+likert_5,4,De acuerdo
+likert_5,5,Muy de acuerdo
+likert_5,-888,No sabe (no leer)
+likert_5,-999,No responde (no leer)
+likert_nunca,1,Nunca
+likert_nunca,2,Casi nunca
+likert_nunca,3,Algunas veces
+likert_nunca,4,A menudo
+likert_nunca,5,Siempre
+likert_nunca,-888,No sabe (no leer)
+likert_nunca,-999,No responde (no leer)
+influencia_2,1,Ninguna influencia
+influencia_2,2,Poca
+influencia_2,3,Ni poca ni mucha
+influencia_2,4,Bastante
+influencia_2,5,Mucha influencia
+influencia_2,-888,No sabe (no leer)
+influencia_2,-999,No responde (no leer)
+disposicion,1,Nada dispuesto
+disposicion,2,Casi nada dispuesto
+disposicion,3,Algo dispuesto
+disposicion,4,Bastante dispuesto
+disposicion,5,Totalmente dispuesto
+disposicion,-888,No sabe (no leer)
+disposicion,-999,No responde (no leer)
+pos_pol,0,0 Izquierda
+pos_pol,1,1
+pos_pol,2,2
+pos_pol,3,3
+pos_pol,4,4
+pos_pol,5,5 Centro
+pos_pol,6,6
+pos_pol,7,7
+pos_pol,8,8
+pos_pol,9,9
+pos_pol,10,10 Derecha
+pos_pol,11,Independiente (no leer)
+pos_pol,12,Ninguno (no leer)
+pos_pol,-888,No sabe (no leer)
+pos_pol,-999,No responde (no leer)
+organizacion,1,"Sí, soy miembro activo"
+organizacion,2,"Sí, soy miembro inactivo"
+organizacion,3,No
+organizacion,-888,No sabe (no leer)
+organizacion,-999,No responde (no leer)
+parentesco,1,Jefe de hogar
+parentesco,2,Esposo(a) o pareja de distinto sexo
+parentesco,3,Esposo(a) o pareja de igual sexo
+parentesco,4,Hijo(a) de ambos
+parentesco,5,Hijo(a) sólo de la jefatura
+parentesco,6,Hijo(a) sólo del esposo(a)/pareja
+parentesco,7,Padre o madre
+parentesco,8,Suegro(a)
+parentesco,9,Yerno o nuera
+parentesco,10,Nieto(a)
+parentesco,11,Hermano(a)
+parentesco,12,Cuñado(a)
+parentesco,13,Otro familiar
+parentesco,14,No familiar
+parentesco,15,Servicio doméstico puertas adentro
+educ,1,Sin estudios
+educ,2,Educación Básica o Preparatoria incompleta
+educ,3,Educación Básica o Preparatoria completa
+educ,4,Educación Media o Humanidades incompleta
+educ,5,Educación Media o Humanidades completa
+educ,6,Técnica Superior incompleta
+educ,7,Técnica Superior completa
+educ,8,Universitaria incompleta
+educ,9,Universitaria completa
+educ,10,Estudios de posgrado (magíster o doctorado)
+educ,-888,No sabe (no leer)
+educ,-999,No responde (no leer)
+civil,1,Casado/a
+civil,2,Conviviente o pareja sin acuerdo de unión civil
+civil,3,Conviviente civil (con acuerdo de unión civil)
+civil,4,Anulado(a)
+civil,5,Separado/a
+civil,6,Divorciado/a
+civil,7,Viudo/a
+civil,8,Soltero/a
+totalmente,0,0. Totalmente insatisfecho
+totalmente,1,1
+totalmente,2,2
+totalmente,3,3
+totalmente,4,4
+totalmente,5,5
+totalmente,6,6
+totalmente,7,7
+totalmente,8,8
+totalmente,9,9
+totalmente,10,10. Totalmente satisfecho
+totalmente,11,No aplica
+totalmente,-888,No sabe (no leer)
+totalmente,-999,No responde (no leer)
+medio,1,Empresa (Departamento de Recursos Humanos)
+medio,2,Sindicato
+medio,3,Colegas
+medio,4,Medios de comunicación
+medio,5,Familiares o amigos/as
+medio,6,Otro
+medio,-888,No sabe (no leer)
+medio,-999,No responde (no leer)
+como_solicitud,1,Individualmente
+como_solicitud,2,"Individualmente, pero con apoyo o asesoría del sindicato"
+como_solicitud,3,Completamente a través del sindicato (el sindicato gestionó e hizo la solicitud)
+acepta_solicitud,1,Aceptó la solicitud sin cambios
+acepta_solicitud,2,Aceptó la solicitud con modificaciones que cumplieron mis expectativas
+acepta_solicitud,3,Aceptó la solicitud con modificaciones que no cumplieron mis expectativas
+acepta_solicitud,4,No aceptó la solicitud
+acepta_solicitud,-888,No sabe (no leer)
+acepta_solicitud,-999,No responde (no leer)
+uso_solicitud,1,"Sí, de acuerdo con mi solicitud original"
+uso_solicitud,2,"Sí, con las modificaciones realizadas por mi empleador"
+uso_solicitud,3,"No, no la utilicé"
+implementa_medida,1,Fue solicitada por usted individualmente
+implementa_medida,2,Fue implementada por la empresa de manera unilateral
+implementa_medida,3,Se implementó por acuerdo entre sindicato y empresa
+implementa_medida,4,No sabe (no leer)
+implementa_medida,5,No responde (no leer)
+uso_modalidad,1,"Sí, usé este tipo de modalidad"
+uso_modalidad,2,"Estuvo disponible la modalidad, pero no lo usé"
+uso_modalidad,3,No estaba disponible la modalidad
+uso_modalidad,4,"No, no sabía si estaba disponible la modalidad"
+uso_modalidad,-888,No sabe (no leer)
+uso_modalidad,-999,No responde (no leer)
+bien,1,Nada bien
+bien,2,No muy bien
+bien,3,Bien
+bien,4,Muy bien
+bien,-888,No sabe (no leer)
+bien,-999,No responde (no leer)
+raramente,1,Nunca
+raramente,2,Raramente
+raramente,3,A veces
+raramente,4,A menudo
+raramente,5,Siempre
+raramente,-888,No sabe (no leer)
+raramente,-999,No responde (no leer)
+definitivamente,1,Definitivamente no
+definitivamente,2,Probablemente no
+definitivamente,3,Tal vez
+definitivamente,4,Probablemente sí
+definitivamente,5,Definitivamente sí
+definitivamente,-888,No sabe (no leer)
+definitivamente,-999,No responde (no leer)
+diariamente,1,Diariamente
+diariamente,2,Varias veces a la semana
+diariamente,3,Una vez a la semana
+diariamente,4,Algunas veces al mes
+diariamente,5,Algunas veces al año
+diariamente,6,Nunca
+cuidado_1,1,Padre corresidente
+cuidado_1,2,Madre corresidente
+cuidado_1,3,Padre no corresidente
+cuidado_1,4,Madre no corresidente
+cuidado_1,5,Hermano mayor de edad
+cuidado_1,6,Hermana mayor de edad
+cuidado_1,7,Hermano menor de edad
+cuidado_1,8,Hermana menor de edad
+cuidado_1,9,Otro familiar corresidente (hombre)
+cuidado_1,10,Otro familiar corresidente (mujer)
+cuidado_1,11,Otro familiar no corresidente (hombre)
+cuidado_1,12,Otro familiar no corresidente (mujer)
+cuidado_1,13,"Vecino (hombre, no remunerado)"
+cuidado_1,14,"Vecina (mujer, no remunerada)"
+cuidado_1,15,"Amigo de la familia (hombre, no remunerado)"
+cuidado_1,16,"Amiga de la familia (mujer, no remunerada)"
+cuidado_1,17,Persona remunerada en el hogar (hombre)
+cuidado_1,18,Persona remunerada en el hogar (mujer)
+cuidado_1,19,Persona remunerada en otra casa (hombre)
+cuidado_1,20,Persona remunerada en otra casa (mujer)
+cuidado_1,21,Institución de cuidado pública (no pagada)
+cuidado_1,22,Institución de cuidado privada (pagada)
+cuidado_2,1,Hermano mayor de edad
+cuidado_2,2,Hermana mayor de edad
+cuidado_2,3,Hermano menor de edad
+cuidado_2,4,Hermana menor de edad
+cuidado_2,5,Otro familiar corresidente (hombre)
+cuidado_2,6,Otro familiar corresidente (mujer)
+cuidado_2,7,Otro familiar no corresidente (hombre)
+cuidado_2,8,Otro familiar no corresidente (mujer)
+cuidado_2,9,"Vecino (hombre, no remunerado)"
+cuidado_2,10,"Vecina (mujer, no remunerada)"
+cuidado_2,11,"Amigo de la familia (hombre, no remunerado)"
+cuidado_2,12,"Amiga de la familia (mujer, no remunerada)"
+cuidado_2,13,Persona remunerada en el hogar (hombre)
+cuidado_2,14,Persona remunerada en el hogar (mujer)
+cuidado_2,15,Persona remunerada en otra casa (hombre)
+cuidado_2,16,Persona remunerada en otra casa (mujer)
+aplica,1,Definitivamente no aplica
+aplica,2,No mucho
+aplica,3,"Neutral, no estoy seguro/a"
+aplica,4,Aplica en parte
+aplica,5,Definitivamente aplica
+aplica,-888,No sabe (no leer)
+aplica,-999,No responde (no leer)
+participacion,1,Pertenece y participa activamente
+participacion,2,"Pertenece, pero no participa activamente"
+participacion,3,"Antes pertenecía, pero actualmente no"
+participacion,4,Nunca ha pertenecido
+participacion,-888,No sabe (no leer)
+participacion,-999,No responde (no leer)
+pocas_veces,1,Nunca
+pocas_veces,2,Casi nunca
+pocas_veces,3,Algunas veces
+pocas_veces,4,A menudo
+pocas_veces,5,Siempre
+pocas_veces,-888,No sabe (no leer)
+pocas_veces,-999,No responde (no leer)
+dias,1,Nunca
+dias,2,Menos de un día a la semana
+dias,3,Varios días a la semana
+dias,4,Una vez al día
+dias,5,Varias veces al día
+dias,-888,No sabe (no leer)
+dias,-999,No responde (no leer)
+interes,1,Muy desinteresado
+interes,2,Algo desinteresado
+interes,3,Ni interesado ni desinteresado
+interes,4,Algo interesado
+interes,5,Muy interesando
+interes,-888,No sabe (no leer)
+interes,-999,No responde (no leer)
+poco,1,Nada
+poco,2,Poco
+poco,3,Algo
+poco,4,Bastante
+poco,5,Mucho
+poco,-888,No sabe (no leer)
+poco,-999,No responde (no leer)
+ess,0,0 El nivel más bajo
+ess,1,1
+ess,2,2
+ess,3,3
+ess,4,4
+ess,5,5
+ess,6,6
+ess,7,7
+ess,8,8
+ess,9,9
+ess,10,10 El nivel más alto
+ess,-888,No sabe (no leer)
+ess,-999,No responde (no leer)
+clase,1,Clase baja
+clase,2,Clase trabajadora
+clase,3,Clase media baja
+clase,4,Clase media
+clase,5,Clase media alta
+clase,6,Clase alta
+clase,-888,No sabe (no leer)
+clase,-999,No responde (no leer)
+razones,1,No lo considero útil
+razones,2,No puedo por mi situación contractual
+razones,3,Temo que la empresa reaccione mal si me uno
+razones,4,Los dirigentes sindicales están muy  alineados con la empresa
+razones,5,Prefiero negociar individualmente
+razones,6,Los dirigentes sindicales son muy politizados
+razones,7,Los dirigentes sindicales son corruptos
+razones,8,Otra
+razones,-888,No sabe (no leer)
+razones,-999,No responde (no leer)
+anual,1,Nunca
+anual,2,Una vez en el año
+anual,3,Dos a tres veces en el año
+anual,4,Mensualmente
+anual,5,Semanalmente
+anual,-888,No sabe (no leer)
+anual,-999,No responde (no leer)
+totalmente_no,0,0. Totalmente insatisfecho
+totalmente_no,1,1
+totalmente_no,2,2
+totalmente_no,3,3
+totalmente_no,4,4
+totalmente_no,5,5
+totalmente_no,6,6
+totalmente_no,7,7
+totalmente_no,8,8
+totalmente_no,9,9
+totalmente_no,10,10. Totalmente satisfecho
+totalmente_no,-888,No aplica (no vive con su pareja)
+totalmente_no,-999,No sabe (no leer)
+region,1,Arica y Parinacota
+region,2,Tarapacá
+region,3,Antofagasta
+region,4,Atacama
+region,5,Coquimbo
+region,6,Valparaíso
+region,7,Región Metropolitana de Santiago
+region,8,Libertador General Bernardo O’Higgins
+region,9,Maule
+region,10,Ñuble
+region,11,Biobío
+region,12,La Araucanía
+region,13,Los Ríos
+region,14,Los Lagos
+region,15,Aysén del General Carlos Ibáñez del Campo
+region,16,Magallanes y de la Antártica Chilena

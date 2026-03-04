@@ -14,6 +14,10 @@ La recolección de datos ha sido realizada mediante la plataforma abierta [formr
 
 Este proyecto también han participado:
 
+- Pablo Pérez-Ahumada
+
+- Julieta Palma
+
 - Daniela Olivares-Collío
 
 - Teresa Barrera

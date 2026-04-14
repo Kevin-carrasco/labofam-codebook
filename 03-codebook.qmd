@@ -74,7 +74,6 @@ for (i in seq_along(filtered_labels$name)) {
 ```
 
 ```{r data-levels, include=FALSE}
-
 choice_cols <- grep("^choice\\d+$", names(survey), value = TRUE)
 all_lists   <- unique(choices$list_name)
 
@@ -140,6 +139,190 @@ for (v in vars_to_label) {
 vars_without_values <- vars_to_label[
   purrr::map_lgl(df[vars_to_label], ~ is.null(attr(.x, "labels")))
 ]
+```
+
+
+```{r data-etiqueta, include=FALSE}
+# --- 1) Cargar base original (cambia la ruta / objeto según tu caso) ---
+labofam <- read_csv("input/data/original/labofam-2026-04-13.csv")
+# Asumo que el objeto se llama `cais`; si no, reemplaza por el nombre real:
+base_original <- labofam
+
+
+# --- 2) Limpiar ** de survey$label (y opcionalmente de choices$label) ---
+survey <- survey %>%
+  mutate(label = stringr::str_replace(as.character(label), "^\\*\\*(.*?)\\*\\*$", "\\1"))
+
+# Si choices$label también viniera con **, descomenta:
+# choices <- choices %>%
+#   mutate(label = stringr::str_replace(as.character(label), "^\\*\\*(.*?)\\*\\*$", "\\1"))
+
+
+# --- 3) Funciones helper para matchear list_name dentro de type y asignar labels ---
+choice_cols <- grep("^choice\\d+$", names(survey), value = TRUE)
+all_lists   <- unique(choices$list_name)
+
+match_list_in_type <- function(type_string, lists = all_lists) {
+  if (is.na(type_string) || !nzchar(trimws(type_string))) return(NA_character_)
+  t <- stringr::str_to_lower(type_string)
+  hits <- lists[stringr::str_detect(t, stringr::fixed(stringr::str_to_lower(lists)))]
+  if (length(hits) == 0) return(NA_character_)
+  hits[which.max(nchar(hits))]  # si hay varias coincidencias, toma la más larga
+}
+
+survey2 <- survey %>%
+  mutate(list_match = purrr::map_chr(type, match_list_in_type))
+
+# Variables comunes entre survey y base
+vars_to_label <- intersect(names(base_original), survey2$name)
+
+for (v in vars_to_label) {
+  row_i <- which(survey2$name == v)[1]
+
+  # (A) label de variable
+  base_original[[v]] <- sjlabelled::set_label(
+    base_original[[v]],
+    label = as.character(survey2$label[row_i])
+  )
+
+  # (B) value labels desde choices o desde choice1..choice9
+  this_list <- survey2$list_match[row_i]
+
+  if (!is.na(this_list)) {
+    ch <- choices %>%
+      filter(list_name == this_list) %>%
+      transmute(
+        raw_level = as.character(name),
+        lab = as.character(label)
+      ) %>%
+      distinct(raw_level, .keep_all = TRUE)
+
+    # usar levels numéricos si TODOS convierten bien; si no, usa character
+    lvl_num <- suppressWarnings(as.numeric(ch$raw_level))
+    if (all(!is.na(lvl_num))) {
+      levels_vec <- lvl_num
+      labels_vec <- stats::setNames(ch$lab, as.character(lvl_num))
+      base_original[[v]] <- sjlabelled::set_labels(base_original[[v]],
+                                                   levels = levels_vec,
+                                                   labels = labels_vec)
+    } else {
+      levels_vec <- ch$raw_level
+      labels_vec <- stats::setNames(ch$lab, ch$raw_level)
+      base_original[[v]] <- sjlabelled::set_labels(base_original[[v]],
+                                                   levels = levels_vec,
+                                                   labels = labels_vec)
+    }
+
+  } else if (length(choice_cols) > 0) {
+    inline_opts <- survey2[row_i, choice_cols] %>%
+      unlist(use.names = FALSE) %>%
+      as.character() %>%
+      purrr::discard(~ is.na(.x) || !nzchar(trimws(.x)))
+
+    if (length(inline_opts) > 0) {
+      levels_vec <- seq_along(inline_opts)
+      labels_vec <- stats::setNames(inline_opts, as.character(levels_vec))
+      base_original[[v]] <- sjlabelled::set_labels(base_original[[v]],
+                                                   levels = levels_vec,
+                                                   labels = labels_vec)
+    }
+  }
+}
+```
+
+
+```{r data-categorias, include=FALSE}
+
+# --- Limpieza (por si choices$label también trae ** ) ---
+survey <- survey %>%
+  mutate(label = stringr::str_replace(as.character(label), "^\\*\\*(.*?)\\*\\*$", "\\1"))
+
+choices <- choices %>%
+  mutate(label = stringr::str_replace(as.character(label), "^\\*\\*(.*?)\\*\\*$", "\\1"))
+
+# --- Función para aplicar labels a una base con datos ---
+apply_survey_labels <- function(data, survey, choices) {
+
+  choice_cols <- grep("^choice\\d+$", names(survey), value = TRUE)
+  all_lists   <- unique(choices$list_name)
+
+  match_list_in_type <- function(type_string, lists = all_lists) {
+    if (is.na(type_string) || !nzchar(trimws(type_string))) return(NA_character_)
+    t <- stringr::str_to_lower(type_string)
+    hits <- lists[stringr::str_detect(t, stringr::fixed(stringr::str_to_lower(lists)))]
+    if (length(hits) == 0) return(NA_character_)
+    hits[which.max(nchar(hits))]  # si hay varias, toma la más larga
+  }
+
+  survey2 <- survey %>%
+    mutate(list_match = purrr::map_chr(type, match_list_in_type))
+
+  vars_to_label <- intersect(names(data), survey2$name)
+
+  for (v in vars_to_label) {
+    row_i <- which(survey2$name == v)[1]
+
+    # 1) Etiqueta de la variable
+    data[[v]] <- sjlabelled::set_label(data[[v]], as.character(survey2$label[row_i]))
+
+    # Si viene como factor, lo convertimos (evita que los códigos se corran)
+    if (is.factor(data[[v]])) {
+      suppressWarnings({
+        tmp <- as.numeric(as.character(data[[v]]))
+      })
+      if (!all(is.na(tmp))) data[[v]] <- tmp else data[[v]] <- as.character(data[[v]])
+    }
+
+    # 2) Etiquetas de categorías (value labels)
+    this_list <- survey2$list_match[row_i]
+
+    if (!is.na(this_list)) {
+      ch <- choices %>%
+        filter(list_name == this_list) %>%
+        transmute(code_raw = as.character(name),
+                  lab      = as.character(label)) %>%
+        distinct(code_raw, .keep_all = TRUE)
+
+      # intenta numérico; si no, deja como character
+      code_num <- suppressWarnings(as.numeric(ch$code_raw))
+      if (all(!is.na(code_num))) {
+        ord <- order(code_num)
+        codes  <- code_num[ord]
+        labs   <- ch$lab[ord]
+      } else {
+        ord <- order(ch$code_raw)
+        codes <- ch$code_raw[ord]
+        labs  <- ch$lab[ord]
+      }
+
+      # vector nombrado: "Etiqueta" = código
+      value_labels <- stats::setNames(codes, labs)
+
+      data[[v]] <- sjlabelled::set_labels(data[[v]], labels = value_labels)
+
+    } else if (length(choice_cols) > 0) {
+      inline_opts <- survey2[row_i, choice_cols] %>%
+        unlist(use.names = FALSE) %>%
+        as.character() %>%
+        purrr::discard(~ is.na(.x) || !nzchar(trimws(.x)))
+
+      if (length(inline_opts) > 0) {
+        codes <- seq_along(inline_opts)
+        value_labels <- stats::setNames(codes, inline_opts)  # "Etiqueta" = código
+        data[[v]] <- sjlabelled::set_labels(data[[v]], labels = value_labels)
+      }
+    }
+  }
+
+  data
+}
+
+
+# reemplaza `cais` por el objeto real si se llama distinto
+base_original <- apply_survey_labels(base_original, survey, choices)
+
+# --- 4) (Opcional) guardar la base ya etiquetada ---
+ save(base_original, file = here("input", "data", "proc", "labofam.RData"))
 
 ```
 

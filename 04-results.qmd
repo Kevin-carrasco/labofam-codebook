@@ -15,7 +15,7 @@ getwd()
 ```
 
 ```{r load-library, include=FALSE}
-pacman::p_load(dplyr, sjlabelled, summarytools, sjmisc, readr, ggplot2, haven)
+pacman::p_load(dplyr, sjlabelled, summarytools, sjmisc, readr, ggplot2, haven, writexl)
 ```
 
 ```{r load-dataset, include=FALSE}
@@ -53,14 +53,57 @@ table(data$rut_encuestador)
 
 iniciadas <- data
 completas <- data %>% filter(!is.na(e25))
+
+sjmisc::frq(completas$a02_01c)
+
+completas <- completas %>%
+  mutate(
+    arreglo_flexible = if_else(
+      a02_01c %in% 1:3 |
+      a02_02c %in% 1:3 |
+      a02_03c %in% 1:3 |
+      a02_04c %in% 1:3 |
+      a02_05c %in% 1:3 |
+      a03_01a == 1 |
+      a03_02a == 1,
+      "Sí",
+      "No"
+    )
+  )
+
+completas <- completas %>%
+  mutate(
+    participacion = if_else(
+      d02_01 %in% 1:3 |
+      d02_02 %in% 1:3 |
+      d02_03 %in% 1:3 |
+      d02_04 %in% 1:3 |
+      d02_05 %in% 1:3 |
+      d02_06 %in% 1:3 |
+      d02_07 %in% 1:3 |
+      d02_08 %in% 1:3 |
+      d02_09 %in% 1:3 |
+      d02_10 %in% 1:3 |
+      d02_11 %in% 1:3 |
+      d02_12 %in% 1:3,
+      "Sí",
+      "No",
+      missing = "No"
+    )
+  )
+
+contacto <- completas %>% dplyr::select(correo, numero, nombre1=e02_n1, nombre2=e02_n2, nombre3=e02_n3, nombre4=e02_n4, nombre5=e02_n5, nombre6=e02_n6, nombre7=e02_n7, arreglo_flexible, participacion, numero_hijos=c01)
+writexl::write_xlsx(contacto, here::here("output", "contacto.xlsx"))
 ```
+
+## Participantes
 
 Se han iniciado `r nrow(iniciadas)` encuestas, de las cuales `r nrow(completas)` han sido completadas.
 
 ## reporte
 
 ```{r}
-reporte <- completas %>% dplyr::select(sexo=e04_n1, edad=e03_n1, educacion=e07_n1, region, sindicalizacion=b20)
+reporte <- completas %>% dplyr::select(sexo=e04_n1, edad=e03_n1, educacion=e07_n1, region, sindicalizacion=b20, arreglo_flexible, participacion)
 
 to_labelled_factor <- function(x) {
   var_lab <- attr(x, "label")
@@ -70,14 +113,7 @@ to_labelled_factor <- function(x) {
   x
 }
 
-reporte <- completas %>%
-  dplyr::select(
-    sexo = e04_n1,
-    edad = e03_n1,
-    educacion = e07_n1,
-    region,
-    sindicalizacion = b20
-  ) %>%
+reporte <- reporte %>%
   mutate(across(c(sexo, educacion, region, sindicalizacion), to_labelled_factor))
 
 summarytools::dfSummary(reporte) %>% 
@@ -93,4 +129,6 @@ summarytools::dfSummary(reporte) %>%
 
 - Hay `r sum(reporte$sindicalizacion == "Sí, soy miembro activo", na.rm = TRUE)` personas sindicalizadas activas
 
+- Hay `r sum(completas$arreglo_flexible == "Sí", na.rm = TRUE)` personas que tienen algún tipo de arreglo flexible en su trabajo.
 
+- Hay `r sum(completas$participacion == "Sí", na.rm = TRUE)` personas que participan en algún grupo o participación.

@@ -7,7 +7,7 @@ editor: source
 
 ```{r setup-chunk, include=FALSE} 
 knitr::opts_chunk$set(dev = 'png', dpi = 300, fig.width = 10, fig.height = 6,
-                      message = FALSE, warning = FALSE, echo = FALSE, cache = TRUE)
+                      message = FALSE, warning = FALSE, echo = FALSE, cache = FALSE)
 #knitr::opts_knit$set(root.dir = "../3_output/img-cais-alas")
 options(scipen=999)
 options(knitr.kable.NA = '')
@@ -131,4 +131,4 @@ summarytools::dfSummary(reporte) %>%
 
 - Hay `r sum(completas$arreglo_flexible == "Sí", na.rm = TRUE)` personas que tienen algún tipo de arreglo flexible en su trabajo.
 
-- Hay `r sum(completas$participacion == "Sí", na.rm = TRUE)` personas que participan en algún grupo o participación.
+- Hay `r sum(completas$participacion == "Sí", na.rm = TRUE)` personas que participan en algún grupo o asociación.

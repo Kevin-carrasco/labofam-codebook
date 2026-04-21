@@ -45,6 +45,12 @@ data <- data %>%
 data <- data %>%
   filter(correlativo_empresa != "Prueba")
 
+data <- data %>%
+  filter(correo != "prueba@gmail.com")
+
+  data <- data %>%
+  filter(correo != "prueba@prueba.cl")
+
 table(data$correo)
 
 table(data$correlativo_empresa)
@@ -92,7 +98,43 @@ completas <- completas %>%
     )
   )
 
-contacto <- completas %>% dplyr::select(correo, numero, nombre1=e02_n1, nombre2=e02_n2, nombre3=e02_n3, nombre4=e02_n4, nombre5=e02_n5, nombre6=e02_n6, nombre7=e02_n7, region,comuna, arreglo_flexible, participacion, numero_hijos=c01, correlativo_empresa, rut_encuestador)
+
+
+contacto <- completas %>% dplyr::select(correo, numero, sexo=e04_n1, nombre1=e02_n1, nombre2=e02_n2, nombre3=e02_n3, nombre4=e02_n4, nombre5=e02_n5, nombre6=e02_n6, nombre7=e02_n7, region,comuna, arreglo_flexible, participacion, numero_hijos=c01, correlativo_empresa, rut_encuestador)
+
+contacto <- contacto %>%
+  mutate(
+    region = case_when(
+      region == 1 ~ "Arica y Parinacota",
+      region == 2 ~ "Tarapacá",
+      region == 3 ~ "Antofagasta",
+      region == 4 ~ "Atacama",
+      region == 5 ~ "Coquimbo",
+      region == 6 ~ "Valparaíso",
+      region == 7 ~ "Región Metropolitana de Santiago",
+      region == 8 ~ "Libertador General Bernardo O’Higgins",
+      region == 9 ~ "Maule",
+      region == 10 ~ "Ñuble",
+      region == 11 ~ "Biobío",
+      region == 12 ~ "La Araucanía",
+      region == 13 ~ "Los Ríos",
+      region == 14 ~ "Los Lagos",
+      region == 15 ~ "Aysén del General Carlos Ibáñez del Campo",
+      region == 16 ~ "Magallanes y de la Antártica Chilena",
+      TRUE ~ NA_character_
+    )
+  )
+
+contacto <- contacto %>%
+  mutate(
+    sexo = case_when(
+      sexo == 1 ~ "Hombre",
+      sexo == 2 ~ "Mujer",
+      sexo == 3 ~ "Otro",
+      TRUE ~ NA_character_
+    )
+  )
+
 writexl::write_xlsx(contacto, here::here("output", "contacto.xlsx"))
 ```
 

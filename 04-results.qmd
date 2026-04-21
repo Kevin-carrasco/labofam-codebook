@@ -92,7 +92,7 @@ completas <- completas %>%
     )
   )
 
-contacto <- completas %>% dplyr::select(correo, numero, nombre1=e02_n1, nombre2=e02_n2, nombre3=e02_n3, nombre4=e02_n4, nombre5=e02_n5, nombre6=e02_n6, nombre7=e02_n7, arreglo_flexible, participacion, numero_hijos=c01)
+contacto <- completas %>% dplyr::select(correo, numero, nombre1=e02_n1, nombre2=e02_n2, nombre3=e02_n3, nombre4=e02_n4, nombre5=e02_n5, nombre6=e02_n6, nombre7=e02_n7, region,comuna, arreglo_flexible, participacion, numero_hijos=c01, correlativo_empresa, rut_encuestador)
 writexl::write_xlsx(contacto, here::here("output", "contacto.xlsx"))
 ```
 

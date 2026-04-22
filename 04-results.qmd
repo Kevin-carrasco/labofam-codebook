@@ -100,7 +100,7 @@ completas <- completas %>%
 
 
 
-contacto <- completas %>% dplyr::select(correo, numero, sexo=e04_n1, nombre1=e02_n1, nombre2=e02_n2, nombre3=e02_n3, nombre4=e02_n4, nombre5=e02_n5, nombre6=e02_n6, nombre7=e02_n7, region,comuna, arreglo_flexible, participacion, numero_hijos=c01, correlativo_empresa, rut_encuestador)
+contacto <- completas %>% dplyr::select(correo, numero, nombre1=e02_n1, sexo1=e04_n1, nombre2=e02_n2, sexo2=e04_n2, nombre3=e02_n3, sexo3=e04_n3, nombre4=e02_n4, sexo4=e04_n4, nombre5=e02_n5, sexo5=e04_n5, nombre6=e02_n6, sexo6=e04_n6, nombre7=e02_n7, sexo7=e04_n7, region,comuna, arreglo_flexible, participacion, numero_hijos=c01, correlativo_empresa, rut_encuestador)
 
 contacto <- contacto %>%
   mutate(
@@ -127,10 +127,46 @@ contacto <- contacto %>%
 
 contacto <- contacto %>%
   mutate(
-    sexo = case_when(
-      sexo == 1 ~ "Hombre",
-      sexo == 2 ~ "Mujer",
-      sexo == 3 ~ "Otro",
+    sexo1 = case_when(
+      sexo1 == 1 ~ "Hombre",
+      sexo1 == 2 ~ "Mujer",
+      sexo1 == 3 ~ "Otro",
+      TRUE ~ NA_character_
+    ),
+    sexo2 = case_when(
+      sexo2 == 1 ~ "Hombre",
+      sexo2 == 2 ~ "Mujer",
+      sexo2 == 3 ~ "Otro",
+      TRUE ~ NA_character_
+    ),
+    sexo3 = case_when(
+      sexo3 == 1 ~ "Hombre",
+      sexo3 == 2 ~ "Mujer",
+      sexo3 == 3 ~ "Otro",
+      TRUE ~ NA_character_
+    ),
+    sexo4 = case_when(
+      sexo4 == 1 ~ "Hombre",
+      sexo4 == 2 ~ "Mujer",
+      sexo4 == 3 ~ "Otro",
+      TRUE ~ NA_character_
+    ),
+    sexo5 = case_when(
+      sexo5 == 1 ~ "Hombre",
+      sexo5 == 2 ~ "Mujer",
+      sexo5 == 3 ~ "Otro",
+      TRUE ~ NA_character_
+    ),
+    sexo6 = case_when(
+      sexo6 == 1 ~ "Hombre",
+      sexo6 == 2 ~ "Mujer",
+      sexo6 == 3 ~ "Otro",
+      TRUE ~ NA_character_
+    ),
+    sexo7 = case_when(
+      sexo7 == 1 ~ "Hombre",
+      sexo7 == 2 ~ "Mujer",
+      sexo7 == 3 ~ "Otro",
       TRUE ~ NA_character_
     )
   )

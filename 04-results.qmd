@@ -100,7 +100,11 @@ completas <- completas %>%
 
 
 
-contacto <- completas %>% dplyr::select(correo, numero, nombre1=e02_n1, sexo1=e04_n1, nombre2=e02_n2, sexo2=e04_n2, nombre3=e02_n3, sexo3=e04_n3, nombre4=e02_n4, sexo4=e04_n4, nombre5=e02_n5, sexo5=e04_n5, nombre6=e02_n6, sexo6=e04_n6, nombre7=e02_n7, sexo7=e04_n7, region,comuna, arreglo_flexible, participacion, numero_hijos=c01, correlativo_empresa, rut_encuestador)
+contacto <- completas %>% 
+  dplyr::select(correo, numero, ola2, nombre1=e02_n1, sexo1=e04_n1, nombre2=e02_n2, sexo2=e04_n2,
+  nombre3=e02_n3, sexo3=e04_n3, nombre4=e02_n4, sexo4=e04_n4, nombre5=e02_n5, sexo5=e04_n5, nombre6=e02_n6, 
+  sexo6=e04_n6, nombre7=e02_n7, sexo7=e04_n7, region,comuna, arreglo_flexible, participacion, numero_hijos=c01,
+  correlativo_empresa, rut_encuestador)
 
 contacto <- contacto %>%
   mutate(
@@ -171,12 +175,83 @@ contacto <- contacto %>%
     )
   )
 
+contacto <- contacto %>%
+  mutate(
+    ola2 = case_when(
+      ola2 == 1 ~ "Sí",
+      ola2 == 2 ~ "No",
+      TRUE ~ NA_character_
+    )
+  )
+  
+clio <- completas %>% 
+  dplyr::select(rut_encuestador, nombre1=e02_n1, numero, correo, correlativo_empresa, fecha_aplicacion)
+    
+
 writexl::write_xlsx(contacto, here::here("output", "contacto.xlsx"))
+writexl::write_xlsx(clio, here::here("output", "clio.xlsx"))
+
+
+```
+
+```{r participacion, include=FALSE}
+filtros <- iniciadas %>%
+  filter(!is.na(e00_03))
+
+demograficos1 <- iniciadas %>%
+  filter(!is.na(comuna))
+
+moduloa <- iniciadas %>%
+  filter(!is.na(a10_05))
+
+modulob <- iniciadas %>%
+  filter(!is.na(b28_05))
+
+moduloc <- iniciadas %>%
+  filter(!is.na(c16_15))
+
+modulod <- iniciadas %>%
+  filter(!is.na(d11_06))
+
+demograficos2 <- iniciadas %>%
+  filter(!is.na(e25))
+
+resumen_modulos <- tibble(
+  modulo = c("Filtros", "Demográficos 1", "Módulo A", "Módulo B", "Módulo C", "Módulo D", "Demográficos 2", "Completas"),
+  n = c(
+    nrow(filtros),
+    nrow(demograficos1),
+    nrow(moduloa),
+    nrow(modulob),
+    nrow(moduloc),
+    nrow(modulod),
+    nrow(demograficos2),
+    nrow(completas)
+  )
+) %>%
+  mutate(
+    porcentaje_participacion = round(100 * n / nrow(iniciadas), 1)
+  )
+
 ```
 
 ## Participantes
 
 Se han iniciado `r nrow(iniciadas)` encuestas, de las cuales `r nrow(completas)` han sido completadas.
+
+- Del total de encuestas iniciadas, `r nrow(filtros)` (`r round(100 * nrow(filtros) / nrow(iniciadas), 1)`%) alcanzaron la sección de filtros.
+
+- Luego, `r nrow(demograficos1)` (`r round(100 * nrow(demograficos1) / nrow(iniciadas), 1)`%) completaron el primer bloque de datos sociodemográficos.
+
+- En el módulo A Modalidades de trabajo flexible terminaron de responder `r nrow(moduloa)` casos (`r round(100 * nrow(moduloa) / nrow(iniciadas), 1)`%)
+
+- En el módulo B Trabajo terminaron de responder `r nrow(modulob)` (`r round(100 * nrow(modulob) / nrow(iniciadas), 1)`%)
+
+- En el módulo C Familia terminaron de responder `r nrow(moduloc)` (`r round(100 * nrow(moduloc) / nrow(iniciadas), 1)`%)
+
+- Y en el módulo D Participación terminaron de responder `r nrow(modulod)` (`r round(100 * nrow(modulod) / nrow(iniciadas), 1)`%).
+
+- Finalmente, `r nrow(demograficos2)` (`r round(100 * nrow(demograficos2) / nrow(iniciadas), 1)`%) alcanzaron el final del módulo 2 de datos sociodemográficos, completando la encuesta.
 
 ## reporte
 

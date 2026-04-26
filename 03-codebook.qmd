@@ -144,7 +144,7 @@ vars_without_values <- vars_to_label[
 
 ```{r data-etiqueta, include=FALSE}
 # --- 1) Cargar base original ---
-labofam <- read_csv("input/data/original/labofam-2026-04-24.csv")
+labofam <- read_csv("input/data/original/labofam-2026-04-26.csv")
 # Asumo que el objeto se llama `cais`; si no, reemplaza por el nombre real:
 base_original <- labofam
 

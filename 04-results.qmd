@@ -15,7 +15,7 @@ getwd()
 ```
 
 ```{r load-library, include=FALSE}
-pacman::p_load(dplyr, sjlabelled, summarytools, sjmisc, readr, ggplot2, haven, writexl)
+pacman::p_load(dplyr, sjlabelled, summarytools, sjmisc, readr, ggplot2, haven, writexl, lubridate)
 ```
 
 ```{r load-dataset, include=FALSE}
@@ -98,13 +98,34 @@ completas <- completas %>%
     )
   )
 
+completas <- completas %>%
+  mutate(
+    across(
+      c(created, ended, modified),
+      ~ ymd_hms(.x, tz = "Europe/Berlin") %>%
+        with_tz("America/Santiago")
+    )
+  )
 
+completas <- completas %>%
+  mutate(
+    across(
+      c(created, ended, modified),
+      ~ format(.x, "%Y-%m-%d %H:%M:%S")
+    )
+  )
+
+completas %>%
+  select(created, ended, modified) %>%
+  tail()
 
 contacto <- completas %>% 
   dplyr::select(correo, numero, ola2, nombre1=e02_n1, sexo1=e04_n1, nombre2=e02_n2, sexo2=e04_n2,
   nombre3=e02_n3, sexo3=e04_n3, nombre4=e02_n4, sexo4=e04_n4, nombre5=e02_n5, sexo5=e04_n5, nombre6=e02_n6, 
   sexo6=e04_n6, nombre7=e02_n7, sexo7=e04_n7, region,comuna, arreglo_flexible, participacion, numero_hijos=c01,
-  correlativo_empresa, rut_encuestador, fecha_aplicacion)
+  correlativo_empresa, rut_encuestador, fecha_aplicacion, fecha_creacion=created, fecha_finalizacion=ended, ultima_modificacion=modified)
+
+
 
 contacto <- contacto %>%
   mutate(

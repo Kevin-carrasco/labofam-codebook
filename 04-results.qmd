@@ -209,6 +209,8 @@ contacto <- contacto %>%
    
 
 writexl::write_xlsx(contacto, here::here("output", "contacto.xlsx"))
+writexl::write_xlsx(completas, here::here("output", "data", "data.xlsx"))
+save(completas, file = here::here("output", "data", "completas.RData"))
 ```
 
 ```{r}

@@ -56,8 +56,17 @@ table(data$correo)
 table(data$correlativo_empresa)
 table(data$rut_encuestador)
 
+data <- data %>%
+  mutate(
+    Caracter_empresa = case_when(
+      Caracter_empresa == 1 ~ "Empresa con sello 40 horas",
+      Caracter_empresa == 2 ~ "Empresa sin sello 40 horas",
+      TRUE ~ NA_character_
+    )
+  )
 
 iniciadas <- data
+
 completas <- data %>% filter(!is.na(e25))
 
 sjmisc::frq(completas$a02_01c)
@@ -123,7 +132,7 @@ contacto <- completas %>%
   dplyr::select(correo, numero, ola2, nombre1=e02_n1, sexo1=e04_n1, nombre2=e02_n2, sexo2=e04_n2,
   nombre3=e02_n3, sexo3=e04_n3, nombre4=e02_n4, sexo4=e04_n4, nombre5=e02_n5, sexo5=e04_n5, nombre6=e02_n6, 
   sexo6=e04_n6, nombre7=e02_n7, sexo7=e04_n7, region,comuna, arreglo_flexible, participacion, numero_hijos=c01,
-  correlativo_empresa, rut_encuestador, fecha_aplicacion, fecha_creacion=created, fecha_finalizacion=ended, ultima_modificacion=modified)
+  correlativo_empresa, Caracter_empresa, rut_encuestador, fecha_aplicacion, fecha_creacion=created, fecha_finalizacion=ended, ultima_modificacion=modified)
 
 
 
@@ -215,7 +224,10 @@ save(completas, file = here::here("output", "data", "completas.RData"))
 
 ```{r}
 clio <- iniciadas %>% 
-  dplyr::select(rut_encuestador, nombre=e02_n1, numero, correo, correlativo_empresa, fecha_aplicacion, region,comuna)
+  dplyr::select(rut_encuestador, nombre1=e02_n1, nombre2=e02_n2, 
+  nombre3=e02_n3, nombre4=e02_n4, nombre5=e02_n5, nombre6=e02_n6, 
+  nombre7=e02_n7, numero, correo, region, comuna, correlativo_empresa, Caracter_empresa, fecha_aplicacion, 
+  fecha_creacion=created, fecha_finalizacion=ended, ultima_modificacion=modified)
 
 clio <- clio %>%
   filter(rut_encuestador != 12)

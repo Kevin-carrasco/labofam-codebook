@@ -51,6 +51,15 @@ data <- data %>%
   data <- data %>%
   filter(correo != "prueba@prueba.cl")
 
+data <- data %>%
+  filter(correo != "asd@test.cl")
+
+data <- data %>%
+  filter(correo != "prueba@hshshs.com")
+
+data <- data %>%
+  filter(correo != "PRUEBA@PRUEBA.CL")
+
 table(data$correo)
 
 table(data$correlativo_empresa)

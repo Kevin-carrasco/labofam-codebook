@@ -239,7 +239,9 @@ clio <- iniciadas %>%
   dplyr::select(rut_encuestador, nombre1=e02_n1, nombre2=e02_n2, 
   nombre3=e02_n3, nombre4=e02_n4, nombre5=e02_n5, nombre6=e02_n6, 
   nombre7=e02_n7, numero, correo, region, comuna, correlativo_empresa, Caracter_empresa, fecha_aplicacion, 
-  fecha_creacion=created, fecha_finalizacion=ended, ultima_modificacion=modified)
+  fecha_creacion=created, fecha_finalizacion=ended, ultima_modificacion=modified,
+  rubro_actividad=e17,
+  rubro_actividad_otro=e17_esp)
 
 clio <- clio %>%
   filter(rut_encuestador != 12)
@@ -272,6 +274,35 @@ clio <- clio %>%
       region == 14 ~ "Los Lagos",
       region == 15 ~ "Aysén del General Carlos Ibáñez del Campo",
       region == 16 ~ "Magallanes y de la Antártica Chilena",
+      TRUE ~ NA_character_
+    )
+  )
+
+clio <- clio %>%
+  mutate(
+    rubro_actividad = case_when(
+      rubro_actividad == 1 ~ "A. Agricultura, ganadería, silvicultura y pesca",
+      rubro_actividad == 2 ~ "B. Explotación de minas y canteras",
+      rubro_actividad == 3 ~ "C. Industrias manufactureras (elaboración y fabricación de productos de cualquier tipo, por ej., alimentos, textiles, madera, químicos, etc.)",
+      rubro_actividad == 4 ~ "D. Suministro de electricidad, gas, vapor y aire acondicionado",
+      rubro_actividad == 5 ~ "E. Suministro de agua, evacuación de aguas residuales, gestión de desechos y descontaminación",
+      rubro_actividad == 6 ~ "F. Construcción",
+      rubro_actividad == 7 ~ "G. Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas",
+      rubro_actividad == 8 ~ "H. Transporte y almacenamiento",
+      rubro_actividad == 9 ~ "I. Actividades de alojamiento y servicio de comidas",
+      rubro_actividad == 10 ~ "J. Información y comunicaciones (ej., edición de libros, producción de películas, telecomunicaciones e informática)",
+      rubro_actividad == 11 ~ "K. Actividades financieras y de seguros (ej., bancos y seguros de vida)",
+      rubro_actividad == 12 ~ "L. Actividades inmobiliarias",
+      rubro_actividad == 13 ~ "M. Actividades profesionales, científicas y técnicas (ej., oficinas de abogados, publicidad, investigación científica)",
+      rubro_actividad == 14 ~ "N. Servicios administrativos y de apoyo (ej., arriendo de vehículos y maquinaria, servicios de seguridad privada, call centers, etc.)",
+      rubro_actividad == 15 ~ "O. Administración pública y defensa (ej., trabajo en el Estado y municipalidades, orden público o en seguridad social de afiliación obligatoria)",
+      rubro_actividad == 16 ~ "P. Enseñanza",
+      rubro_actividad == 17 ~ "Q. Atención de la salud humana y de asistencia social",
+      rubro_actividad == 18 ~ "R. Actividades artísticas, de entretenimiento y recreativas (ej., trabajo en librerías, centros deportivos o parques de diversión)",
+      rubro_actividad == 19 ~ "S. Otras actividades de servicios (ej., lavado de ropa, peluquería o trabajo en organizaciones sociales)",
+      rubro_actividad == 20 ~ "T. Actividades no diferenciadas de los hogares como productores de bienes y servicios para uso propio",
+      rubro_actividad == 21 ~ "U. Organizaciones y órganos extraterriroriales",
+      rubro_actividad == 22 ~ "Otra",
       TRUE ~ NA_character_
     )
   )

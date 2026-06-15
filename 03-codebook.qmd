@@ -145,9 +145,9 @@ vars_without_values <- vars_to_label[
 ```{r data-etiqueta, include=FALSE}
 # --- 1) Cargar base original ---
 
-labofam = as.data.frame(jsonlite::fromJSON("input/data/original/labofam-2026-06-12.json"))
+labofam = as.data.frame(jsonlite::fromJSON("input/data/original/labofam-2026-06-15.json"))
 
-#labofam <- read_csv("input/data/original/labofam-2026-05-13.csv")
+#labofam <- read_csv("input/data/original/labofam-2026-05-15.csv")
 
 base_original <- labofam
 

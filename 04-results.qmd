@@ -308,6 +308,7 @@ clio <- clio %>%
   )
 
 writexl::write_xlsx(clio, here::here("output", "clio.xlsx"))
+writexl::write_xlsx(iniciadas, here::here("output", "iniciadas.xlsx"))
 ```
 ```{r participacion, include=FALSE}
 filtros <- iniciadas %>%

@@ -81,6 +81,13 @@ iniciadas <- data
 
 completas <- data %>% filter(!is.na(e25))
 
+completas <- completas %>%
+  mutate(id_preliminar = 1:n()) %>%
+  relocate(id_preliminar, .before = 1)
+
+writexl::write_xlsx(completas, here::here("output", "data", "labofam-ola1.xlsx"))
+save(completas, file = here::here("output", "data", "labofam-ola1.RData"))
+
 sjmisc::frq(completas$a02_01c)
 
 completas <- completas %>%
